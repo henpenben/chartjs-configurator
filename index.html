@@ -9,60 +9,79 @@
   <title>chartjs configurator</title>
 </head>
 <body>
-  <section>
-    <label>
-      Comma-separated data labels (x axis)<br/>
-      <textarea id="labels" placeholder="red,orange,blue,green,yellow"></textarea>
-    </label>
-    <label>
-      Comma-separated data values (y axis)<br/>
-      <textarea id="values" placeholder="1,2,3,4,5"></textarea>
-    </label>
-    <label>
-      value name
-      <input id="valuename" type="text"/>
-    </label>
-    <label>
-      Comma-separated data values (secondary y axis) (optional)<br/>
-      <textarea id="values2" placeholder="1,2,4,8,16"></textarea>
-    </label>
-    <label>
-      value2 name
-      <input id="value2name" type="text"/>
-    </label>
-    <label>
-      Primary Color
-      <input id="color" type="color"/>
-    </label>
-    <label>
-      Outline Color
-      <input id="outlineColor" type="color"/>
-    </label>
-    <label>
-      Primary Color (secondary axis)
-      <input id="color2" type="color"/>
-    </label>
-    <label>
-      Outline Color (secondary axis)
-      <input id="outlineColor2" type="color"/>
-    </label>
-    <label>
-      Chart Type
-      <select id="chartType">
-        <option>line</option>
-        <option>bar</option>
-        <option>radar</option>
-        <option>pie</option>
-        <option>doughnut</option>
-        <option>polarArea</option>
-      </select>
-    </label>
-    <button id="randomizer">randomize</button>
-    <label>
-      verbose mode
-      <input id="verbose" type="checkbox"/>
-    </label>
-  </section>
+  <div id="menu">
+    <section>
+      <label>
+        Comma-separated data labels (x axis)<br/>
+        <textarea id="labels" placeholder="red,orange,blue,green,yellow"></textarea>
+      </label>
+      <label>
+        Comma-separated data values (y axis)<br/>
+        <textarea id="values" placeholder="1,2,3,4,5"></textarea>
+      </label>
+      <label>
+        value name
+        <input id="valuename" type="text"/>
+      </label>
+      <label>
+        Comma-separated data values (secondary y axis) (optional)<br/>
+        <textarea id="values2" placeholder="1,2,4,8,16"></textarea>
+      </label>
+      <label>
+        value2 name
+        <input id="value2name" type="text"/>
+      </label>
+      <label>
+        Primary Color
+        <input id="color" type="color"/>
+      </label>
+      <label>
+        Outline Color
+        <input id="outlineColor" type="color"/>
+      </label>
+      <label>
+        Primary Color (secondary axis)
+        <input id="color2" type="color"/>
+      </label>
+      <label>
+        Outline Color (secondary axis)
+        <input id="outlineColor2" type="color"/>
+      </label>
+      <label>
+        Chart Type
+        <select id="chartType">
+          <option>line</option>
+          <option>bar</option>
+          <option>horizontalBar</option>
+          <option>radar</option>
+          <option>pie</option>
+          <option>doughnut</option>
+          <option>polarArea</option>
+        </select>
+      </label>
+      <button id="randomizer">randomize</button>
+      <label>
+        verbose mode
+        <input id="verbose" type="checkbox"/>
+      </label>
+    </section>
+    <section>
+      <h1>chart options</h1>
+      <label>
+        fill under chart
+        <input id="fillChart" type="checkbox">
+      </label>
+      <br>
+      <label>
+        Point Radius [<span id="pointRadiusValue"></span>]
+        <input id="pointRadius" type="range" min="0" max="10" value="1">
+      </label>
+      <label>
+        Line/Border Thickness [<span id="borderThicknessValue"></span>]
+        <input id="borderThickness" type="range" min="0" max="10" value="1">
+      </label>
+    </section>
+  </div>
   <div id="chart"></div>
 </body>
 </html>

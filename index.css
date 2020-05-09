@@ -4,3 +4,9 @@ section {
   margin: auto auto;
   max-width: 50%;
 }
+
+#menu {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}

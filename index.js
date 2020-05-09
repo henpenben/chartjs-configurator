@@ -1,6 +1,8 @@
 window.addEventListener("load", init);
 
-let labels, values, valuename, values2, value2name, color, outlineColor, color2, outlineColor2, chartType, verbose;
+let labels, values, valuename, values2, value2name, color, outlineColor, color2, outlineColor2, chartType;
+let verbose = false;
+let options = {};
 
 function init() {
   qs("#labels").addEventListener("change", setValues);
@@ -14,9 +16,12 @@ function init() {
   qs("#outlineColor2").addEventListener("change", setValues);
   qs("#chartType").addEventListener("change", setValues);
   qs("#randomizer").addEventListener("click", randomize);
-  verbose = false;
-  qs("#verbose").addEventListener("click", ()=>{ verbose = !verbose; logAll(); });
+  qs("#borderThickness").addEventListener("click", setValues);
+  qs("#pointRadius").addEventListener("click", setValues);
+  qs("#fillChart").addEventListener("change", setValues);
 
+  qs("#verbose").addEventListener("click", ()=>{ verbose = !verbose; logAll(); });
+  setValues();
   randomize();
 };
 
@@ -36,30 +41,27 @@ function updateChart() {
       backgroundColor: color,
       borderColor: outlineColor,
       data: values,
-      fill: false,
+      fill: options.fill,
+      borderWidth: options.borderWidth,
+      pointRadius: options.pointRadius,
     }
   ]
   if(values2?.length > 0) {
-    datasets.push(
-      {
-        label: value2name,
-        backgroundColor: color2,
-        borderColor: outlineColor2,
-        data: values2,
-        fill: false,
-      }
-    );
+    let two = {};
+    two = Object.assign(two, datasets[0]);
+    two.label = value2name;
+    two.backgroundColor = color2;
+    two.borderColor = outlineColor2;
+    two.data = values2;
+    datasets.push(two);
   }
 
   new Chart(ctx, {
     type: chartType,
     data: {
       labels: labels,
-      datasets: datasets
+      datasets: datasets,
     },
-    options: {
-
-    }
   });
 }
 
@@ -108,6 +110,12 @@ function setValues() {
   color2 = qs("#color2").value;
   outlineColor2 = qs("#outlineColor2").value;
   chartType = qs("#chartType").value;
+  qs("#borderThicknessValue").textContent = qs("#borderThickness").value;
+  options.borderWidth = qs("#borderThickness").value;
+  qs("#pointRadiusValue").textContent = qs("#pointRadius").value;
+  options.pointRadius = qs("#pointRadius").value;
+  options.fill = qs("#fillChart").checked;
+
   updateChart();
 }
 
@@ -130,6 +138,7 @@ function logAll() {
   console.log("color2: " + color2);
   console.log("outlineColor2: " + outlineColor2);
   console.log("chartType: " + chartType);
+  console.log(options);
 }
 
 function qs(selector) {
