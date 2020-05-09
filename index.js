@@ -36,6 +36,7 @@ function updateChart() {
       backgroundColor: color,
       borderColor: outlineColor,
       data: values,
+      fill: false,
     }
   ]
   if(values2?.length > 0) {
@@ -45,6 +46,7 @@ function updateChart() {
         backgroundColor: color2,
         borderColor: outlineColor2,
         data: values2,
+        fill: false,
       }
     );
   }
@@ -88,6 +90,7 @@ function randomize() {
   outlineColor2 = randomColor();
   qs("#outlineColor2").value = outlineColor2;
   chartType = qs("#chartType").children[Math.round(Math.random() * (qs("#chartType").children.length - 1))].value;
+  qs("#chartType").value = chartType;
   valuename = "Series 1";
   value2name = "Series 2";
 
