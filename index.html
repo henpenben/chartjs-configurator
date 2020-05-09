@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js" integrity="sha256-R4pqcOYV8lt7snxMQO/HSbVCFRPMdrhAFMH+vr9giYI=" crossorigin="anonymous"></script>
+  <script src="./index.js"></script>
+  <link rel="stylesheet" href="./index.css"/>
+  <title>chartjs configurator</title>
+</head>
+<body>
+  <section>
+    <label>
+      Comma-separated data labels (x axis)<br/>
+      <textarea id="labels" placeholder="red,orange,blue,green,yellow"></textarea>
+    </label>
+    <label>
+      Comma-separated data values (y axis)<br/>
+      <textarea id="values" placeholder="1,2,3,4,5"></textarea>
+    </label>
+    <label>
+      value name
+      <input id="valuename" type="text"/>
+    </label>
+    <label>
+      Comma-separated data values (secondary y axis) (optional)<br/>
+      <textarea id="values2" placeholder="1,2,4,8,16"></textarea>
+    </label>
+    <label>
+      value2 name
+      <input id="value2name" type="text"/>
+    </label>
+    <label>
+      Primary Color
+      <input id="color" type="color"/>
+    </label>
+    <label>
+      Outline Color
+      <input id="outlineColor" type="color"/>
+    </label>
+    <label>
+      Primary Color (secondary axis)
+      <input id="color2" type="color"/>
+    </label>
+    <label>
+      Outline Color (secondary axis)
+      <input id="outlineColor2" type="color"/>
+    </label>
+    <label>
+      Chart Type
+      <select id="chartType">
+        <option>line</option>
+        <option>bar</option>
+        <option>radar</option>
+        <option>pie</option>
+        <option>doughnut</option>
+        <option>polarArea</option>
+      </select>
+    </label>
+    <button id="randomizer">randomize</button>
+    <label>
+      verbose mode
+      <input id="verbose" type="checkbox"/>
+    </label>
+  </section>
+  <div id="chart"></div>
+</body>
+</html>
