@@ -1,12 +1,25 @@
 section {
   display: flex;
   flex-direction: column;
-  margin: auto auto;
-  max-width: 50%;
+  margin: 0rem 1rem;
 }
 
 #menu {
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+#miscOptions {
+  max-width: 200px;
+}
+
+label {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hide {
+  display: none !important;
 }

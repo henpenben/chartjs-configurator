@@ -32,19 +32,9 @@
         value2 name
         <input id="value2name" type="text"/>
       </label>
-      <h3> misc options</h3>
-      <button id="randomizer">randomize</button>
-      <label>
-        verbose mode
-        <input id="verbose" type="checkbox"/>
-      </label>
-      <label>
-        dump config to console
-        <input id="dumpConfig" type="checkbox"/>
-      </label>
     </section>
     <section>
-      <h1>chart options</h1>
+      <h1>Chart Options</h1>
       <label>
         chart title
         <input id="chartTitle" type="text" placeholder="something descriptive">
@@ -82,13 +72,32 @@
         <input id="fillChart" type="checkbox">
       </label>
       <br>
-      <label>
-        Point Radius [<span id="pointRadiusValue"></span>]
-        <input id="pointRadius" type="range" min="0" max="10" value="1">
+      <label id="pointRadiusOption">
+        Point Radius
+        <div>
+          <input id="pointRadius" type="range" min="0" max="10" value="1">
+          [<span id="pointRadiusValue"></span>]
+        </div>
+
       </label>
       <label>
-        Line/Border Thickness [<span id="borderThicknessValue"></span>]
-        <input id="borderThickness" type="range" min="0" max="10" value="1">
+        Line/Border Thickness
+        <div>
+          <input id="borderThickness" type="range" min="0" max="10" value="1">
+          [<span id="borderThicknessValue"></span>]
+        </div>
+      </label>
+    </section>
+    <section id="miscOptions">
+      <h3> misc options</h3>
+      <button id="randomizer">randomize</button>
+      <label>
+        verbose mode
+        <input id="verbose" type="checkbox"/>
+      </label>
+      <label>
+        dump config to console
+        <input id="dumpConfig" type="checkbox"/>
       </label>
     </section>
   </div>

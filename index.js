@@ -190,6 +190,11 @@ function setValues() {
       e.display = false;
     });
   }
+  if(chartType === "line" || chartType === "radar") {
+    qs("#pointRadiusOption").classList.remove("hide");
+  } else {
+    qs("#pointRadiusOption").classList.add("hide");
+  }
 
   updateChart();
 }
