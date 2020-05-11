@@ -1,8 +1,24 @@
 window.addEventListener("load", init);
 
-let labels, values, valuename, values2, value2name, color, outlineColor, color2, outlineColor2, chartType;
+let labels, values, valuename, values2, value2name, color, outlineColor, color2, outlineColor2, chartType, chartTitle, chartObj;
 let verbose = false;
-let options = {};
+let options = {
+  title:{
+    display: true,
+    text: chartTitle,
+  },
+  scales: {
+    yAxes: [
+      {
+        type: "linear",
+        display: true,
+        position: "left",
+        id: "y-axis-1",
+      },
+
+    ],
+  }
+};
 
 function init() {
   qs("#labels").addEventListener("change", setValues);
@@ -19,6 +35,7 @@ function init() {
   qs("#borderThickness").addEventListener("click", setValues);
   qs("#pointRadius").addEventListener("click", setValues);
   qs("#fillChart").addEventListener("change", setValues);
+  qs("#chartTitle").addEventListener("change", setValues);
 
   qs("#verbose").addEventListener("click", ()=>{ verbose = !verbose; logAll(); });
   setValues();
@@ -44,6 +61,7 @@ function updateChart() {
       fill: options.fill,
       borderWidth: options.borderWidth,
       pointRadius: options.pointRadius,
+      yAxisID: "y-axis-1",
     }
   ]
   if(values2?.length > 0) {
@@ -53,15 +71,35 @@ function updateChart() {
     two.backgroundColor = color2;
     two.borderColor = outlineColor2;
     two.data = values2;
+    two.yAxisID = "y-axis-2";
+
+    if(options.scales.yAxes.length === 1) {
+      options.scales.yAxes.push({
+        type: "linear",
+        display: true,
+        position: "right",
+        id: "y-axis-2",
+        // grid line settings
+        gridLines: {
+            drawOnChartArea: false, // only want the grid lines for one axis to show up
+        },
+      });
+    }
+
     datasets.push(two);
+  } else {
+    while(options.scales.yAxes.length > 1) {
+      options.scales.yAxes.pop();
+    }
   }
 
-  new Chart(ctx, {
+  chartObj = new Chart(ctx, {
     type: chartType,
     data: {
       labels: labels,
       datasets: datasets,
     },
+    options: options,
   });
 }
 
@@ -75,7 +113,7 @@ function randomize() {
     labels.push(letters[i]);
     values.push(Math.round(Math.random() * 100));
     if(n > 12) {
-      values2.push(Math.round(Math.random() * 100));
+      values2.push(Math.round(Math.random() * 1000));
     }
   }
   qs("#labels").value = labels.join(",");
@@ -115,6 +153,8 @@ function setValues() {
   qs("#pointRadiusValue").textContent = qs("#pointRadius").value;
   options.pointRadius = qs("#pointRadius").value;
   options.fill = qs("#fillChart").checked;
+  chartTitle = (qs("#chartTitle").value.length > 1 && qs("#chartTitle").value.split(/ /)[0] !== "ChartJS") ? qs("#chartTitle").value : `ChartJS ${chartType} chart`;
+  options.title.text = chartTitle;
 
   updateChart();
 }
@@ -138,6 +178,7 @@ function logAll() {
   console.log("color2: " + color2);
   console.log("outlineColor2: " + outlineColor2);
   console.log("chartType: " + chartType);
+  console.log("chartTitle: " + chartTitle);
   console.log(options);
 }
 
