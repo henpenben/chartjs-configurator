@@ -52,7 +52,7 @@
         <select id="chartType">
           <option>line</option>
           <option>bar</option>
-          <option>horizontalBar</option>
+          <!-- TODO: fix horizontal bar charts <option>horizontalBar</option> -->
           <option>radar</option>
           <option>pie</option>
           <option>doughnut</option>
@@ -67,6 +67,10 @@
     </section>
     <section>
       <h1>chart options</h1>
+      <label>
+        chart title
+        <input id="chartTitle" type="text">
+      </label>
       <label>
         fill under chart
         <input id="fillChart" type="checkbox">
