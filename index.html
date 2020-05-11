@@ -11,6 +11,7 @@
 <body>
   <div id="menu">
     <section>
+      <h1>Data Options</h1>
       <label>
         Comma-separated data labels (x axis)<br/>
         <textarea id="labels" placeholder="red,orange,blue,green,yellow"></textarea>
@@ -31,34 +32,7 @@
         value2 name
         <input id="value2name" type="text"/>
       </label>
-      <label>
-        Primary Color
-        <input id="color" type="color"/>
-      </label>
-      <label>
-        Outline Color
-        <input id="outlineColor" type="color"/>
-      </label>
-      <label>
-        Primary Color (secondary axis)
-        <input id="color2" type="color"/>
-      </label>
-      <label>
-        Outline Color (secondary axis)
-        <input id="outlineColor2" type="color"/>
-      </label>
-      <label>
-        Chart Type
-        <select id="chartType">
-          <option>line</option>
-          <option>bar</option>
-          <!-- TODO: fix horizontal bar charts <option>horizontalBar</option> -->
-          <option>radar</option>
-          <option>pie</option>
-          <option>doughnut</option>
-          <option>polarArea</option>
-        </select>
-      </label>
+      <h3> misc options</h3>
       <button id="randomizer">randomize</button>
       <label>
         verbose mode
@@ -74,6 +48,34 @@
       <label>
         chart title
         <input id="chartTitle" type="text" placeholder="something descriptive">
+      </label>
+      <label>
+        Primary Color (<span class="series1"></span>)
+        <input id="color" type="color"/>
+      </label>
+      <label>
+        Outline Color (<span class="series1"></span>)
+        <input id="outlineColor" type="color"/>
+      </label>
+      <label>
+        Primary Color (<span class="series2"></span>)
+        <input id="color2" type="color"/>
+      </label>
+      <label>
+        Outline Color (<span class="series2"></span>)
+        <input id="outlineColor2" type="color"/>
+      </label>
+      <label>
+        Chart Type
+        <select id="chartType">
+          <option>line</option>
+          <option>bar</option>
+          <!-- TODO: fix horizontal bar charts <option>horizontalBar</option> -->
+          <option>radar</option>
+          <option>pie</option>
+          <option>doughnut</option>
+          <option>polarArea</option>
+        </select>
       </label>
       <label>
         fill under chart

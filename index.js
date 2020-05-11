@@ -131,11 +131,11 @@ function dumpConfig(labels, datasets) {
   if(qs("#dumpConfig").checked) {
     console.log("chart type:");
     console.log(chartType);
-    console.log("-----");
+    console.log("");
     console.log("data:");
     console.log({data:{labels:labels,datasets:datasets}});
     console.log(JSON.stringify({data:{labels:labels,datasets:datasets}}));
-    console.log("-----");
+    console.log("");
     console.log("options:");
     console.log({options:options});
     console.log(JSON.stringify({options:options}));
@@ -146,8 +146,14 @@ function setValues() {
   labels = qs("#labels").value.split(",");
   values = qs("#values").value.split(",");
   valuename = qs("#valuename").value;
+  qsa(".series1").forEach( (e) => {
+    e.textContent = valuename;
+  });
   values2 = qs("#values2").value.length > 1 ? qs("#values2").value.split(",") : null;
   value2name = qs("#value2name").value;
+  qsa(".series2").forEach( (e) => {
+    e.textContent = value2name;
+  });
   color = qs("#color").value;
   outlineColor = qs("#outlineColor").value;
   color2 = qs("#color2").value;
@@ -213,4 +219,8 @@ function logAll() {
 
 function qs(selector) {
   return document.querySelector(selector);
+}
+
+function qsa(selector) {
+  return document.querySelectorAll(selector);
 }
