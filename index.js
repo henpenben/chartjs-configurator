@@ -36,6 +36,7 @@ function init() {
   qs("#pointRadius").addEventListener("click", setValues);
   qs("#fillChart").addEventListener("change", setValues);
   qs("#chartTitle").addEventListener("change", setValues);
+  qs("#dumpConfig").addEventListener("change", updateChart);
 
   qs("#verbose").addEventListener("click", ()=>{ verbose = !verbose; logAll(); });
   setValues();
@@ -73,25 +74,14 @@ function updateChart() {
     two.data = values2;
     two.yAxisID = "y-axis-2";
 
-    if(options.scales.yAxes.length === 1) {
-      options.scales.yAxes.push({
-        type: "linear",
-        display: true,
-        position: "right",
-        id: "y-axis-2",
-        // grid line settings
-        gridLines: {
-            drawOnChartArea: false, // only want the grid lines for one axis to show up
-        },
-      });
-    }
-
     datasets.push(two);
   } else {
     while(options.scales.yAxes.length > 1) {
       options.scales.yAxes.pop();
     }
   }
+
+  dumpConfig(labels, datasets);
 
   chartObj = new Chart(ctx, {
     type: chartType,
@@ -134,7 +124,22 @@ function randomize() {
   valuename = "Series 1";
   value2name = "Series 2";
 
-  updateChart();
+  setValues();
+}
+
+function dumpConfig(labels, datasets) {
+  if(qs("#dumpConfig").checked) {
+    console.log("chart type:");
+    console.log(chartType);
+    console.log("-----");
+    console.log("data:");
+    console.log({data:{labels:labels,datasets:datasets}});
+    console.log(JSON.stringify({data:{labels:labels,datasets:datasets}}));
+    console.log("-----");
+    console.log("options:");
+    console.log({options:options});
+    console.log(JSON.stringify({options:options}));
+  }
 }
 
 function setValues() {
@@ -154,7 +159,31 @@ function setValues() {
   options.pointRadius = qs("#pointRadius").value;
   options.fill = qs("#fillChart").checked;
   chartTitle = (qs("#chartTitle").value.length > 1 && qs("#chartTitle").value.split(/ /)[0] !== "ChartJS") ? qs("#chartTitle").value : `ChartJS ${chartType} chart`;
+  qs("#chartTitle").value = chartTitle;
   options.title.text = chartTitle;
+
+  if(options.scales.yAxes.length === 1) {
+    options.scales.yAxes.push({
+      type: "linear",
+      display: true,
+      position: "right",
+      id: "y-axis-2",
+      // grid line settings
+      gridLines: {
+          drawOnChartArea: false, // only want the grid lines for one axis to show up
+      },
+    });
+  }
+
+  if(chartType === "bar" || chartType === "line") {
+    options.scales.yAxes.forEach( (e) => {
+      e.display = true;
+    });
+  } else {
+    options.scales.yAxes.forEach( (e) => {
+      e.display = false;
+    });
+  }
 
   updateChart();
 }
